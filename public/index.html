@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>P's Jokebook</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <h1>Pedro's Jokebook Of All Time</h1>
+        
+        <div id="joke-container"></div>
+        <button id="allBtn">Display all jokes</button>
+        <button id="catBtn">Display categories</button>
+        <button id="rdmBtn">I'm feeling lucky.</button><br>
+        <p>Select jokes of the following category:</p>
+        <select id="category">
+            <option value="lameJoke">Lame Joke</option>
+            <option value="funnyJoke">Funny Joke</option>
+        </select>
+        <label>Limit (optional):</label>
+        <input type="number" id="limit" min="1">
+        <button id="fetchBtn">Get Jokes</button><br>
+        <form id="form-container">
+            <p>New Joke</p>
+            <input type="text" placeholder="Joke Category" name="category" id="category" required>
+            <input type="text" placeholder="Joke Setup" name="setup" id="setup" required>
+            <input type="text" placeholder="Joke Delivery" name="delivery" id="delivery" required>
+            <button type="submit" id="save-joke" class="addBtn">Add to Jokebook</button>
+        </form>
+        
+    </body>
+
+</html>

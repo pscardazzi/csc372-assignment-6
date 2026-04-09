@@ -1,0 +1,39 @@
+body{
+    background-color: aquamarine;
+}
+
+h1{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#joke-container {
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 20px;
+  height: 400px;
+  display: flex;
+}
+
+.joke-item {
+  border-radius: 10px;
+  border: 3px dotted green;
+  border-radius: 3px;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2px;
+  width: auto;
+  height: 150px;
+  flex-wrap: wrap;
+}
+
+.setup {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.delivery {
+    color: green;
+    font-style: italic;
+    font-size: 1em;
+}
