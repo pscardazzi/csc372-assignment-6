@@ -1,6 +1,13 @@
+//jokeController.js
 "use strict";
 const model = require('../models/jokeModel');
 
+/* 
+fetchAllJokes/fetchCategs/fetchRandomFunction here attempts
+to take the functions inside the jokeModel, and returns the
+result as a JSON if successful. If not successful, returns error 500
+and a message.
+*/ 
 async function fetchAllJokes(req, res) {
     try {
         const jokes = await model.getAllJokes();
@@ -30,7 +37,10 @@ async function fetchRandomFunction(req, res) {
             res.status(500).send("Server error");
         }
 }
-
+/* fetchJokesByType is a little different. it grabs the category and limit specifically,
+then checks if the limit is not undefined. If so, it parses the data as an int, and throws
+an error if the result is not a number or less than or equal to 0. Once that's checked, then
+the limit is pushed, and getJokesByType is called. */
 async function fetchJokesByType(req, res) {
     const type = req.params.category;
     const limit = req.query.limit;
@@ -59,6 +69,11 @@ async function fetchJokesByType(req, res) {
     }
 }
 
+/*
+createJoke is similar to the previous functions. The main few differences is 
+the three constants taking req.body, and it returns server code 201 if 
+addJoke is successful.
+*/
 async function createJoke(req, res) {
     const { category, setup, delivery } = req.body;
     if (category && setup && delivery) {
@@ -74,6 +89,7 @@ async function createJoke(req, res) {
     }
 }
 
+//This exports all functions
 module.exports = {
     fetchAllJokes,
     fetchCategs,

@@ -1,11 +1,22 @@
+/*
+script.js
+Establishing consts related to the buttons.
+*/
 const slctBtn = document.getElementById("fetchBtn");
 const rdmBtn = document.getElementById("rdmBtn");
 const allBtn = document.getElementById("allBtn");
 const catBtn = document.getElementById("catBtn");
 const jokes = document.getElementById("joke-container");
 
+/*
+Upon clicking the Get Jokes button, this function fecthes 'jokebook/category/:category',
+subbing the :category with either lameJoke or funnyJoke, and adding '?limit' if the 
+user specified one. Then the fuction checks for exisiting children already appended to
+joke-container and deletes them, then creates new divs, grabs the setup and delivery,
+then appends them to the joke-container div.
+*/
 slctBtn.addEventListener("click", async () => {
-    const category = document.getElementById("category").value;
+    const category = document.getElementById("catselect").value;
     const limit = document.getElementById("limit").value;
     let url = `jokebook/category/${category}`;
     if (limit) {
@@ -37,6 +48,12 @@ slctBtn.addEventListener("click", async () => {
     });
 });
 
+/*
+Upon clicking the 'I'm feeling lucky.' button, this function fecthes 'jokebook/random',
+then it does a similar process to the 'Get Jokes' button: erases previously appended divs
+in joke-container, creates new divs, grabs the setup and delivery of the random joke, 
+then appends them to joke-container.
+*/
 rdmBtn.addEventListener("click", async()=>{
     
     let url = 'jokebook/random';
@@ -65,6 +82,10 @@ rdmBtn.addEventListener("click", async()=>{
     });
 });
 
+/*
+Upon clicking the 'Display all jokes' button, this function fecthes 'jokebook/',
+then it repeats the process of the previous two functions.
+*/
 allBtn.addEventListener("click", async()=>{
     let url = 'jokebook';
     const res = await fetch(url);
@@ -92,6 +113,11 @@ allBtn.addEventListener("click", async()=>{
     });
 });
 
+/*
+Upon clicking the 'Display categories' button, this function fecthes 'jokebook/categories',
+then it makes a similar process to the functions above, only it only fetches the joke's 
+category, and appends it to joke-container.
+*/
 catBtn.addEventListener("click", async()=>{
     let url = 'jokebook/categories';
     const res = await fetch(url);
@@ -114,11 +140,18 @@ catBtn.addEventListener("click", async()=>{
     });
 });
 
+/*
+Upon clicking 'Add to Jokebook' once th form is filled out, calls submitForm().
+submitForm then fetches a POST rquest for 'jokebook/add', taking the JSON
+stringified version of the form elements and putting them on the jokebook
+database. 
+*/
 let addBtn = document.getElementById("save-joke");
 addBtn.addEventListener("click", function (e) {
     e.preventDefault();
     submitForm();
 });
+
 
 function submitForm() {
     let params = new FormData(document.getElementById("form-container")); // pass in entire form tag
